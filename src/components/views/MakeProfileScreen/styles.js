@@ -16,6 +16,19 @@ const styles = StyleSheet.create({
         textAlign: 'center',
          margin: 10
     },
+    registrationTextView:{
+        paddingVertical:5,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:'transparent',
+        marginHorizontal:20,
+        marginBottom:15,
+    },
+    registrationText:{
+        fontSize:28,
+        fontWeight:'700',
+         color:'white'
+    },
 });
 
 export default styles;

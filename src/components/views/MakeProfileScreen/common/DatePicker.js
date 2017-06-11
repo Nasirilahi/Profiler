@@ -19,7 +19,7 @@ const DatePicker = ({
     return(
         <View style={styles.datePickerView}>
             <TouchableOpacity style={styles.datePickerContainer} onPress={_showDatePicker}>
-                { isEmpty ? <Text style={styles.datePickerText}>Select Date of Birth</Text> : <Text style={styles.datePickerText}>{moment(value).format('L')}</Text> }
+                { isEmpty ? <Text style={styles.datePickerText}>Date of Birth</Text> : <Text style={styles.datePickerText}>{moment(value).format('L')}</Text> }
                 <Icon  name='caret-down' size={20} color='grey'/>
             </TouchableOpacity>
             <DateTimePicker

@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 const TextInputView = ({value, type, onChangeText}) => {
-    //console.log('value',value);
    return(
         <View style={styles.textInputContainer}>
             <TextInput 

@@ -9,6 +9,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import RegistrationForm from './RegistrationForm';
 import { MenuContext } from 'react-native-menu';
+import Button from './common/Button';
 
 class MakeProfileScreen extends Component {
     static navigationOptions = {
@@ -74,7 +75,6 @@ class MakeProfileScreen extends Component {
     _hideDatePicker = () => this.setState({ isDateTimePickerVisible: false });
  
     _handleDatePicked = (date, ) => {
-        // console.log('A date has been picked: ', date);
         this.setState({DOB: {value :date, isEmpty :false }});
         this._hideDatePicker();
     };
@@ -89,10 +89,12 @@ class MakeProfileScreen extends Component {
               >
               <ScrollView>
                   <LinearGradient 
-                        colors={['green','red']} 
-                        style={{borderColor:'red',borderWidth:1,alignItems:'center',justifyContent:'center',backgroundColor:'transparent',marginHorizontal:20,marginBottom:15,}}
+                        colors={['#EB5757','#000000', '#C33764']} 
+                        style={styles.registrationTextView} 
+                        start={{x: 0.0, y: 0.25}} 
+                         end={{x: 0.5, y: 1.0}}
                     >
-                  <Text style={{fontSize:28,fontWeight:'700', color:'white'}}>{'Registration'}</Text>
+                  <Text style={styles.registrationText}>{'Registration'}</Text>
                   </LinearGradient>
                     <MenuContext style={{ flex: 1 }}>
                          <RegistrationForm 
@@ -104,6 +106,7 @@ class MakeProfileScreen extends Component {
                             _handleDatePicked={this._handleDatePicked}
                          />
                     </MenuContext>   
+                    <Button />
               </ScrollView>
               </LinearGradient>
          );
