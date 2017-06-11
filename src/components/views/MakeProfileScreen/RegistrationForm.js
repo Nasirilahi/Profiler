@@ -9,44 +9,43 @@ import LabelView from './common/LabelView';
 import TextInputView from './common/TextInputView';
 
 const RegistrationForm = (props)=>{
-    console.log(props);
     return(
         <View>
             <ComponentWrapper>
                 <LabelView label={'First Name :'} />
-                <TextInputView value={props.firstName} />
+                <TextInputView value={props.firstName} type={'firstName'} onChangeText={props.onChangeText} />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Last Name :'} />
-                <TextInputView value={props.lastName} />
+                <TextInputView value={props.lastName}  type={'lastName'}  onChangeText={props.onChangeText}  />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Date Of Birth :'} />
-                <TextInputView value={props.DOB} />
+                <TextInputView value={props.DOB} type={'DOB'}  onChangeText={props.onChangeText}  />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Gender :'} />
-                <TextInputView value={props.gender} />
+                <TextInputView value={props.gender} type={'gender'} onChangeText={props.onChangeText}   />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Address Line 1 :'} />
-                <TextInputView value={props.address1} />
+                <TextInputView value={props.address1} type={'address1'} onChangeText={props.onChangeText}   />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Address Line 2 :'} />
-                <TextInputView value={props.address2} />
+                <TextInputView value={props.address2} type={'address2'} onChangeText={props.onChangeText}  />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'City :'} />
-                <TextInputView value={props.city} />
+                <TextInputView value={props.city} type={'city'} onChangeText={props.onChangeText}   />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'State :'} />
-                <TextInputView value={props.state} />
+                <TextInputView value={props.state} type={'state'} onChangeText={props.onChangeText}   />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Country :'} />
-                <TextInputView value={props.country} />
+                <TextInputView value={props.country} type={'country'} onChangeText={props.onChangeText}   />
             </ComponentWrapper>
         </View>
     );

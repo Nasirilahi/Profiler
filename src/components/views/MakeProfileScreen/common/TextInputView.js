@@ -6,11 +6,16 @@ import {
     StyleSheet,
 } from 'react-native';
 
-const TextInputView = ({value}) => {
-    //console.log('valuevalue',value)
+const TextInputView = ({value, type, onChangeText}) => {
    return(
         <View style={styles.textInputContainer}>
-            <TextInput placeholder={'value'}  value={value.value}/>
+            <TextInput 
+                style={{height: 40}}
+                onChangeText={(text) => onChangeText(text,type)}
+                value={value.value}
+                autoCapitalize={'none'}
+                autoCorrect={false}
+            />
         </View>
    );
 };

@@ -54,6 +54,11 @@ class MakeProfileScreen extends Component {
             },
         }
     }
+
+    onChangeText = (text, fieldType) => {
+        this.setState({[fieldType]:{ value: text, isEmpty: false }});
+    };
+
     render(){
          return(
               <LinearGradient 
@@ -63,7 +68,7 @@ class MakeProfileScreen extends Component {
                 end={{x: 0.5, y: 1.0}}
               >
               <ScrollView>
-                   <RegistrationForm {...this.state} />   
+                   <RegistrationForm {...this.state} onChangeText={this.onChangeText} />   
               </ScrollView>
               </LinearGradient>
          );
