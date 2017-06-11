@@ -8,7 +8,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
 import RegistrationForm from './RegistrationForm';
-
+import { MenuContext } from 'react-native-menu';
 
 class MakeProfileScreen extends Component {
     static navigationOptions = {
@@ -30,7 +30,7 @@ class MakeProfileScreen extends Component {
                 isEmpty:true,
             },
             gender:{
-                value:'',
+                value:'Male',
                 isEmpty:true,
             },
             address1:{
@@ -55,10 +55,17 @@ class MakeProfileScreen extends Component {
         }
     }
 
-    onChangeText = (text, fieldType) => {
-        this.setState({[fieldType]:{ value: text, isEmpty: false }});
+    onChangeText = (text, type) => {
+        if(text.trim().length !==0){
+            this.setState({[type]:{ value: text, isEmpty: false }});
+        }
+        else{
+            this.setState({[type]:{ value: '', isEmpty: true }})
+        }
     };
-
+    selectGender = (value,type) => {
+       this.setState({[type]:{ value, isEmpty: false }});
+    };
     render(){
          return(
               <LinearGradient 
@@ -68,7 +75,19 @@ class MakeProfileScreen extends Component {
                 end={{x: 0.5, y: 1.0}}
               >
               <ScrollView>
-                   <RegistrationForm {...this.state} onChangeText={this.onChangeText} />   
+                  <LinearGradient 
+                        colors={['green','red']} 
+                        style={{borderColor:'red',borderWidth:1,alignItems:'center',justifyContent:'center',backgroundColor:'transparent',marginHorizontal:20,marginBottom:15,}}
+                    >
+                  <Text style={{fontSize:28,fontWeight:'700', color:'white'}}>{'Registration'}</Text>
+                  </LinearGradient>
+                    <MenuContext style={{ flex: 1 }}>
+                         <RegistrationForm 
+                            {...this.state} 
+                            onChangeText={this.onChangeText} 
+                            selectGender={this.selectGender}
+                         />
+                    </MenuContext>   
               </ScrollView>
               </LinearGradient>
          );

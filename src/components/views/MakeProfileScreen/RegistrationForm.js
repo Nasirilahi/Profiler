@@ -3,10 +3,12 @@ import {
     View, 
     Text,
     TouchableOpacity,
+    StyleSheet,
 } from 'react-native';
 import ComponentWrapper from './common/ComponentWrapper';
 import LabelView from './common/LabelView';
 import TextInputView from './common/TextInputView';
+import DropDownMenu from './common/DropDownMenu';
 
 const RegistrationForm = (props)=>{
     return(
@@ -25,7 +27,7 @@ const RegistrationForm = (props)=>{
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Gender :'} />
-                <TextInputView value={props.gender} type={'gender'} onChangeText={props.onChangeText}   />
+                <DropDownMenu value={props.gender} type={'gender'} selectGender={props.selectGender}/>
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Address Line 1 :'} />
