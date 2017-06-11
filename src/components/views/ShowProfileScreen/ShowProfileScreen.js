@@ -8,7 +8,7 @@ import {
 const ShowProfileScreen = () => {
     return(
         <View>
-            <Text>{'Home Screen'}</Text>
+            <Text>{'ShowProfileScreen '}</Text>
         </View>
     );
 }

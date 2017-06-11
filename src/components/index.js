@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
-import Routes from '../routes/Routes';
 import { Provider } from 'react-redux';
 import store from '../store/configureStore';
-import HomeScree from '../components/views/HomeScreen';
+import HomeScreen from '../components/views/HomeScreen';
+import MakeProfileScreen from '../components/views/MakeProfileScreen';
+import ShowProfileScreen from '../components/views/ShowProfileScreen';
+
 const AppNavigator = StackNavigator({
-    ...Routes,
-    Home : { screen: HomeScree },
+    Home : { screen: HomeScreen },
+    MakeProfile: { screen: MakeProfileScreen },
+    ShowProfile: { screen: ShowProfileScreen },
 },{
-    initialRouteName: 'Home',
+    initialRouteName: 'MakeProfile',
     mode: 'card'
 }
 )
