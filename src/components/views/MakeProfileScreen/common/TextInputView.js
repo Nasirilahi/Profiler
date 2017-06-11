@@ -11,7 +11,8 @@ const TextInputView = ({value, type, onChangeText}) => {
    return(
         <View style={styles.textInputContainer}>
             <TextInput 
-                style={{height: 40, color:'grey'}}
+                style={{height: 40, color:'grey',}}
+                underlineColorAndroid={'transparent'}
                 onChangeText={(text) => onChangeText(text,type)}
                 value={value.value}
                 autoCapitalize={'none'}

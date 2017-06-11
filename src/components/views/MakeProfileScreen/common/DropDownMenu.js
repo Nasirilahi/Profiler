@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-between',
-        paddingHorizontal:4,
+        paddingHorizontal:6,
     },
     menuText:{
         fontSize:16,

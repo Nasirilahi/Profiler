@@ -11,7 +11,7 @@ const { width } = Dimensions.get('window');
 
 const ComponentWrapper = (props) => {
     return(
-        <View style={[styles.wrapperContainer, {flexDirection: width < 375 ? 'column': 'row', height: width < 375 ? 80 : 40  }]}>
+        <View style={[styles.wrapperContainer, {flexDirection: width < 375 ? 'column': 'row', height: width < 375 ? 80 : 40, marginVertical:width < 375 ? 0 : 10   }]}>
             {
                 props.children
             }
@@ -22,7 +22,6 @@ const ComponentWrapper = (props) => {
 const styles = StyleSheet.create({
     wrapperContainer:{
         marginHorizontal:20,
-        marginVertical:10,
     },
 });
 

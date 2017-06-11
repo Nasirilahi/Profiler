@@ -9,6 +9,7 @@ import ComponentWrapper from './common/ComponentWrapper';
 import LabelView from './common/LabelView';
 import TextInputView from './common/TextInputView';
 import DropDownMenu from './common/DropDownMenu';
+import DatePicker from './common/DatePicker';
 
 const RegistrationForm = (props)=>{
     return(
@@ -23,7 +24,13 @@ const RegistrationForm = (props)=>{
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Date Of Birth :'} />
-                <TextInputView value={props.DOB} type={'DOB'}  onChangeText={props.onChangeText}  />
+                <DatePicker 
+                    value={props.DOB} 
+                     _showDatePicker={props._showDatePicker}
+                    _hideDatePicker={props._hideDatePicker}
+                     _handleDatePicked={props._handleDatePicked}
+                     isDateTimePickerVisible={props.isDateTimePickerVisible}    
+                />
             </ComponentWrapper>
              <ComponentWrapper>
                 <LabelView label={'Gender :'} />

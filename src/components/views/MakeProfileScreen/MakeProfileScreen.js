@@ -31,7 +31,7 @@ class MakeProfileScreen extends Component {
             },
             gender:{
                 value:'Male',
-                isEmpty:true,
+                isEmpty:false,
             },
             address1:{
                 value:'',
@@ -52,6 +52,7 @@ class MakeProfileScreen extends Component {
                 value:'',
                 isEmpty:true,
             },
+            isDateTimePickerVisible:false,
         }
     }
 
@@ -63,9 +64,21 @@ class MakeProfileScreen extends Component {
             this.setState({[type]:{ value: '', isEmpty: true }})
         }
     };
+
     selectGender = (value,type) => {
        this.setState({[type]:{ value, isEmpty: false }});
     };
+
+    _showDatePicker = () => this.setState({ isDateTimePickerVisible: true });
+    
+    _hideDatePicker = () => this.setState({ isDateTimePickerVisible: false });
+ 
+    _handleDatePicked = (date, ) => {
+        // console.log('A date has been picked: ', date);
+        this.setState({DOB: {value :date, isEmpty :false }});
+        this._hideDatePicker();
+    };
+
     render(){
          return(
               <LinearGradient 
@@ -86,6 +99,9 @@ class MakeProfileScreen extends Component {
                             {...this.state} 
                             onChangeText={this.onChangeText} 
                             selectGender={this.selectGender}
+                            _showDatePicker={this._showDatePicker}
+                            _hideDatePicker={this._hideDatePicker}
+                            _handleDatePicked={this._handleDatePicked}
                          />
                     </MenuContext>   
               </ScrollView>
