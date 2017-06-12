@@ -16,6 +16,22 @@ import { bindActionCreators } from 'redux';
 import Header from './common/Header';
 import { setProfile } from '../../../actions/profileActions';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ImagePicker from 'react-native-image-picker';
+import { NavigationActions } from 'react-navigation';
+
+const resetAction = NavigationActions.reset({
+  index: 0,
+  actions: [
+    NavigationActions.navigate({ routeName: 'ShowProfile'})
+  ]
+})
+
+
+const options = {
+  title: 'Select Image',
+};
+
+
 
 class MakeProfileScreen extends Component {
     static navigationOptions = {
@@ -64,6 +80,9 @@ class MakeProfileScreen extends Component {
         }
     }
 
+   componentWillUnmount(){
+        console.log('$$$$$$$');
+    }
     onChangeText = (text, type) => {
         if(text.trim().length !==0){
             this.setState({[type]:{ value: text, isEmpty: false }});
@@ -85,6 +104,27 @@ class MakeProfileScreen extends Component {
         this.setState({DOB: {value :date, isEmpty :false }});
         this._hideDatePicker();
     };
+
+    uploadImage = () => {
+                ImagePicker.showImagePicker(options, (response) => {
+                console.log('Response = ', response);
+                if (response.didCancel) {
+                    console.log('User cancelled image picker');
+                }
+                else if (response.error) {
+                    console.log('ImagePicker Error: ', response.error);
+                }
+                else if (response.customButton) {
+                    console.log('User tapped custom button: ', response.customButton);
+                }
+                else {
+                    let source = { uri: response.uri };
+                    this.setState({
+                    avatarSource: source
+                    });
+                }
+            });
+    }
     _canSubmit = () => {
         const  {
             firstName,
@@ -94,9 +134,10 @@ class MakeProfileScreen extends Component {
             city,
             state,
             country,
+            imageURL,
         } = this.state;
-
-        if(!firstName.isEmpty && !lastName.isEmpty && !DOB.isEmpty && !address1.isEmpty && !city.isEmpty && !state.isEmpty && !country.isEmpty){
+       
+        if(!firstName.isEmpty && !lastName.isEmpty && !DOB.isEmpty && !address1.isEmpty && !city.isEmpty && !state.isEmpty && !country.isEmpty && imageURL.length === 0){
              return true;
         }
         else{
@@ -106,7 +147,7 @@ class MakeProfileScreen extends Component {
     onSubmit = () => {
         if(this._canSubmit()){
            this.props.setProfile(this.state);
-           this.props.navigation.navigate('ShowProfile');
+           this.props.navigation.dispatch(resetAction);
         }
         else{
             this._toast.show('All Fields are required except Address Line 2.',2000);
@@ -114,6 +155,7 @@ class MakeProfileScreen extends Component {
     };
 
     render(){
+        const { imageURL } = this.state;
          return(
               <LinearGradient 
                 colors={['#80d0c7','#13547a']} 
@@ -132,8 +174,12 @@ class MakeProfileScreen extends Component {
                             _hideDatePicker={this._hideDatePicker}
                             _handleDatePicked={this._handleDatePicked}
                          />
-                    </MenuContext>   
-                    <Icon  name='ios-camera-outline' size={60} color='white'/>
+                    </MenuContext>  
+                    <View style={styles.cameraView}>
+                        {
+                            imageURL.length === 0  ? <TouchableOpacity onPress={this.uploadImage} ><Icon  name='ios-camera-outline' size={60} color='white' /></TouchableOpacity> : <Image source={require(imageURL)} />
+                        }
+                    </View> 
                     <Button onSubmit={this.onSubmit} />
               </ScrollView>
                  <Toast 

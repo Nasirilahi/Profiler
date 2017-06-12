@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
         fontWeight:'700',
          color:'white'
     },
+    cameraView:{
+        alignItems:'center',
+        backgroundColor:'transparent'
+    },
 });
 
 export default styles;
