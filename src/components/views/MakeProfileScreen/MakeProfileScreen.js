@@ -4,6 +4,7 @@ import {
     Text,
     TouchableOpacity,
     ScrollView,
+    Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import styles from './styles';
@@ -27,10 +28,14 @@ const resetAction = NavigationActions.reset({
 })
 
 
-const options = {
-  title: 'Select Image',
+ const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true
+      }
 };
-
 
 
 class MakeProfileScreen extends Component {
@@ -80,9 +85,6 @@ class MakeProfileScreen extends Component {
         }
     }
 
-   componentWillUnmount(){
-        console.log('$$$$$$$');
-    }
     onChangeText = (text, type) => {
         if(text.trim().length !==0){
             this.setState({[type]:{ value: text, isEmpty: false }});
@@ -106,24 +108,35 @@ class MakeProfileScreen extends Component {
     };
 
     uploadImage = () => {
-                ImagePicker.showImagePicker(options, (response) => {
-                console.log('Response = ', response);
-                if (response.didCancel) {
-                    console.log('User cancelled image picker');
-                }
-                else if (response.error) {
-                    console.log('ImagePicker Error: ', response.error);
-                }
-                else if (response.customButton) {
-                    console.log('User tapped custom button: ', response.customButton);
-                }
-                else {
-                    let source = { uri: response.uri };
-                    this.setState({
-                    avatarSource: source
-                    });
-                }
-            });
+
+         const options = {
+      quality: 1.0,
+      maxWidth: 500,
+      maxHeight: 500,
+      storageOptions: {
+        skipBackup: true
+      }
+    };
+
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled photo picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      }
+      else {
+        let source = { uri: response.uri };
+        this.setState({
+          imageURL: source
+        });
+      }
+    });
     }
     _canSubmit = () => {
         const  {
@@ -137,7 +150,7 @@ class MakeProfileScreen extends Component {
             imageURL,
         } = this.state;
        
-        if(!firstName.isEmpty && !lastName.isEmpty && !DOB.isEmpty && !address1.isEmpty && !city.isEmpty && !state.isEmpty && !country.isEmpty && imageURL.length === 0){
+        if(!firstName.isEmpty && !lastName.isEmpty && !DOB.isEmpty && !address1.isEmpty && !city.isEmpty && !state.isEmpty && !country.isEmpty && imageURL.length !== 0){
              return true;
         }
         else{
@@ -177,7 +190,7 @@ class MakeProfileScreen extends Component {
                     </MenuContext>  
                     <View style={styles.cameraView}>
                         {
-                            imageURL.length === 0  ? <TouchableOpacity onPress={this.uploadImage} ><Icon  name='ios-camera-outline' size={60} color='white' /></TouchableOpacity> : <Image source={require(imageURL)} />
+                            imageURL.length === 0  ? <TouchableOpacity onPress={this.uploadImage} ><Icon  name='ios-camera-outline' size={60} color='white' /></TouchableOpacity> : <Image source={this.state.imageURL}  style={{width:60,height:60, borderRadius:5, marginTop:5}}/>
                         }
                     </View> 
                     <Button onSubmit={this.onSubmit} />

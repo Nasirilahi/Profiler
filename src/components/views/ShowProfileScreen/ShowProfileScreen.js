@@ -61,7 +61,7 @@ class ShowProfileScreen extends Component {
                         <TouchableOpacity onPress={this.navigateToHome} ><Icon2  name='home' size={30} color='white' /></TouchableOpacity>
                    </View>
                    <View style={styles.avatarView}>
-                       <Image source={require('./images.jpeg')} style={{width:120,height:120,borderRadius:60, borderColor:'#13547a',borderWidth:5,}} />
+                       <Image source={imageURL} style={{width:120,height:120,borderRadius:60, borderColor:'#13547a',borderWidth:5,}} />
                    </View>
                     <View style={styles.nameContainer}>
                         <Text style={styles.nameText}>{`${firstName.value} ${lastName.value}`}</Text>

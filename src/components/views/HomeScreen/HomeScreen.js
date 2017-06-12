@@ -23,7 +23,6 @@ const HomeScreen = ({ navigation }) => {
         <LinearGradient colors={['#E8CBC0', '#636FA4','green']} style={styles.container}>
             <StatusBar 
             translucent
-             backgroundColor="white"
              barStyle="light-content"
             />
             <SpringView>
