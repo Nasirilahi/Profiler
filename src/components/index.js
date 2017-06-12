@@ -12,7 +12,7 @@ const AppNavigator = StackNavigator({
     ShowProfile: { screen: ShowProfileScreen },
 },{
     initialRouteName: 'MakeProfile',
-    mode: 'card'
+    mode: 'modal'
 }
 )
 

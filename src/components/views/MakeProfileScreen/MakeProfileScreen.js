@@ -10,6 +10,12 @@ import styles from './styles';
 import RegistrationForm from './RegistrationForm';
 import { MenuContext } from 'react-native-menu';
 import Button from './common/Button';
+import Toast, {DURATION} from 'react-native-easy-toast'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Header from './common/Header';
+import { setProfile } from '../../../actions/profileActions';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class MakeProfileScreen extends Component {
     static navigationOptions = {
@@ -53,6 +59,7 @@ class MakeProfileScreen extends Component {
                 value:'',
                 isEmpty:true,
             },
+            imageURL:'',
             isDateTimePickerVisible:false,
         }
     }
@@ -78,6 +85,33 @@ class MakeProfileScreen extends Component {
         this.setState({DOB: {value :date, isEmpty :false }});
         this._hideDatePicker();
     };
+    _canSubmit = () => {
+        const  {
+            firstName,
+            lastName,
+            DOB,
+            address1,
+            city,
+            state,
+            country,
+        } = this.state;
+
+        if(!firstName.isEmpty && !lastName.isEmpty && !DOB.isEmpty && !address1.isEmpty && !city.isEmpty && !state.isEmpty && !country.isEmpty){
+             return true;
+        }
+        else{
+             return false ;
+        }
+    }
+    onSubmit = () => {
+        if(this._canSubmit()){
+           this.props.setProfile(this.state);
+           this.props.navigation.navigate('ShowProfile');
+        }
+        else{
+            this._toast.show('All Fields are required except Address Line 2.',2000);
+        }
+    };
 
     render(){
          return(
@@ -88,14 +122,7 @@ class MakeProfileScreen extends Component {
                 end={{x: 0.5, y: 1.0}}
               >
               <ScrollView>
-                  <LinearGradient 
-                        colors={['#EB5757','#000000', '#C33764']} 
-                        style={styles.registrationTextView} 
-                        start={{x: 0.0, y: 0.25}} 
-                         end={{x: 0.5, y: 1.0}}
-                    >
-                  <Text style={styles.registrationText}>{'Registration'}</Text>
-                  </LinearGradient>
+                   <Header headerText={'Registration'} />
                     <MenuContext style={{ flex: 1 }}>
                          <RegistrationForm 
                             {...this.state} 
@@ -106,12 +133,22 @@ class MakeProfileScreen extends Component {
                             _handleDatePicked={this._handleDatePicked}
                          />
                     </MenuContext>   
-                    <Button />
+                    <Icon  name='ios-camera-outline' size={60} color='white'/>
+                    <Button onSubmit={this.onSubmit} />
               </ScrollView>
+                 <Toast 
+                    style={{backgroundColor:'#F6B44A'}}  
+                    ref={(toast) => this._toast = toast}
+                 />
               </LinearGradient>
          );
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return{
+        setProfile: bindActionCreators(setProfile, dispatch),
+    }
+}
 
-export default MakeProfileScreen;
+export default connect(null, mapDispatchToProps)(MakeProfileScreen);

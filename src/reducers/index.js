@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import projectListReducer from './projectListReducer';
+import profileReducer from './profileReducer';
 
 const rootReducer = combineReducers({
-    projectList:projectListReducer,
+    profile:profileReducer,
 });
 
 export default rootReducer;

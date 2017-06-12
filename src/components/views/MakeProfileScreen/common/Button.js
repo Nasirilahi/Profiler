@@ -4,15 +4,17 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
+    Dimensions,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+const { width } = Dimensions.get('window');
 
-const Button = () => {
+const Button = ({onSubmit}) => {
     return(
         <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.buttonView}>
+            <TouchableOpacity style={styles.buttonView} onPress={onSubmit}>
                  <LinearGradient 
-                        colors={['#EB5757','#000000', '#C33764']} 
+                        colors={['#F7971E','#FFD200', ]} 
                         style={styles.linearView}
                          start={{x: 0.0, y: 0.25}} 
                          end={{x: 0.5, y: 1.0}}
@@ -32,7 +34,7 @@ const styles = StyleSheet.create({
        marginVertical:10,
     },
     buttonView:{
-        width:200,
+        width:width-40,
         borderRadius:5,
     },
     linearView:{
