@@ -5,6 +5,7 @@ import store from '../store/configureStore';
 import HomeScreen from '../components/views/HomeScreen';
 import MakeProfileScreen from '../components/views/MakeProfileScreen';
 import ShowProfileScreen from '../components/views/ShowProfileScreen';
+import { BackHandler } from 'react-native';
 
 const AppNavigator = StackNavigator({
     Home : { screen: HomeScreen },
@@ -17,6 +18,7 @@ const AppNavigator = StackNavigator({
 )
 
 export default class Profiler extends Component {
+
   render() {
     return (
       <Provider store={store}>
