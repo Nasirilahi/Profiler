@@ -9,7 +9,7 @@ import {
 import styles from './styles';
 import LinearGradient from 'react-native-linear-gradient';
 import { NavigationActions } from 'react-navigation'
-import FadeInView from './FadeInAnimation';
+import SpringView from './SpringView';
 
 const resetAction = NavigationActions.reset({
   index: 0,
@@ -26,11 +26,11 @@ const HomeScreen = ({ navigation }) => {
              backgroundColor="white"
              barStyle="light-content"
             />
-            <FadeInView>
+            <SpringView>
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => navigation.dispatch(resetAction)}>
                     <Text style={styles.buttonText}>Make Your Profile</Text>
                 </TouchableOpacity>
-            </FadeInView>
+            </SpringView>
         </LinearGradient>
     );
 }

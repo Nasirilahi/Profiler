@@ -11,7 +11,7 @@ const AppNavigator = StackNavigator({
     MakeProfile: { screen: MakeProfileScreen },
     ShowProfile: { screen: ShowProfileScreen },
 },{
-    initialRouteName: 'MakeProfile',
+    initialRouteName: 'Home',
     mode: 'modal'
 }
 )
