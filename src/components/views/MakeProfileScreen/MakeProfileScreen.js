@@ -150,7 +150,7 @@ class MakeProfileScreen extends Component {
             imageURL,
         } = this.state;
        
-        if(!firstName.isEmpty && !lastName.isEmpty && !DOB.isEmpty && !address1.isEmpty && !city.isEmpty && !state.isEmpty && !country.isEmpty && imageURL.length !== 0){
+        if(!firstName.isEmpty && !lastName.isEmpty && !DOB.isEmpty && !address1.isEmpty && !city.isEmpty && !state.isEmpty && !country.isEmpty){
              return true;
         }
         else{
