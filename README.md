@@ -1,4 +1,4 @@
-# MusejamChallenege
+# Profiler
 
 
 This is a react-native Android/iOS application for creating a user profile and showing user profile.
