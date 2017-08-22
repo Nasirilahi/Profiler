@@ -20,13 +20,6 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-picker';
 import { NavigationActions } from 'react-navigation';
 
-const resetAction = NavigationActions.reset({
-  index: 0,
-  actions: [
-    NavigationActions.navigate({ routeName: 'ShowProfile'})
-  ]
-})
-
 
  const options = {
       quality: 1.0,
@@ -159,8 +152,14 @@ class MakeProfileScreen extends Component {
     }
     onSubmit = () => {
         if(this._canSubmit()){
-           this.props.setProfile(this.state);
-           this.props.navigation.dispatch(resetAction);
+          this.props.setProfile(this.state);
+            const resetAction = NavigationActions.reset({
+                index: 0,
+                actions: [
+                    NavigationActions.navigate({ routeName: 'ShowProfile',params:{user:this.state}})
+                ]
+            })
+            this.props.navigation.dispatch(resetAction);
         }
         else{
             this._toast.show('All Fields are required except Address Line 2.',2000);

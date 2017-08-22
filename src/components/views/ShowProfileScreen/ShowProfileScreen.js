@@ -39,18 +39,39 @@ class ShowProfileScreen extends Component {
         this.props.navigation.dispatch(resetAction);
     };
     render(){
-         const {profile:{data:{
-               firstName,
-                lastName,
-                DOB,
-                gender,
-                address1,
-                address2,
-                city,
-                state,
-                country,
-                imageURL,
-         }}} = this.props;
+        console.log('props',this.props);
+         // const {profile:{data:{
+         //       firstName,
+         //        lastName,
+         //        DOB,
+         //        gender,
+         //        address1,
+         //        address2,
+         //        city,
+         //        state,
+         //        country,
+         //        imageURL,
+         // }}} = this.props;
+        const {
+            navigation:{
+                state:{
+                    params:{
+                        user:{
+                            firstName,
+                            lastName,
+                            DOB,
+                            gender,
+                            address1,
+                            address2,
+                            city,
+                            state,
+                            country,
+                            imageURL,
+                        }
+                    }
+                }
+            }
+        } = this.props;
          return(
             <LinearGradient 
                 colors={['#13547a','white']} 
@@ -85,7 +106,7 @@ class ShowProfileScreen extends Component {
                                 }
                                 
                             </View>
-                            <TitleValue label={'Gender'} value={gender.value} />
+                            <TitleValue label={'Gender'} value={gender.value.toUpperCase()} />
                         </View>
                             <View style={styles.rowContainer}>
                             <View style={styles.iconView}>
